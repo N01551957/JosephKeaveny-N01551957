@@ -1,5 +1,5 @@
 module "rgroup" {
-  source = "./modulules/rgroup-N01551957"
+  source = "./modules/rgroup-N01551957"
 }
 
 module "network" {
