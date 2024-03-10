@@ -20,7 +20,28 @@ module "network-N01551957" {
 
 module "vmlinux-N01551957" {
   source = "./modules/vmlinux-N01551957"
+
+  common_tags = {
+    Assignment = "CCGC 5502 Automation Assignment"
+    Name = "Joseph.Keaveny"
+    ExpirationDate = "2024-12-31"
+    Environment = "Learning"
+    }
+  linux_avs                     = "linux_avs"
+  resource_group-linux-location = module.rgroup-N01551957.N01551957-RG.location
+  resource_group-linux-name     = module.rgroup-N01551957.N01551957-RG.name
+  vm-count = {
+    centos-vm1 = "Standard_B1ms"
+    centos-vm2 = "Standard_B1ms"
+    centos-vm3 = "Standard_B1ms"
+    }
+  linux-network-subnet = module.network-N01551957.N01551957-SUBNET.id
+  linux_name           = "n01551957-c-vm"
+  Admin_username       = "j"
+  Public_key           = "/home/j/.ssh/id_rsa.pub"
+  Private_key          = "/home/j/.ssh/id_rsa"
 }
+
 
 module "vmwindows-N01551957" {
   source = "./modules/vmwindows-N01551957"
