@@ -43,3 +43,34 @@ output "CentOS_private_ips" {
 output "CentOS_virtual_network_names" {
   value = module.vmlinux-N01551957.CentOS_nic
 }
+
+
+
+output "windows_vm_hostnames" {
+  value = module.vmwindows-N01551957.windows_vm_hostnames
+}
+
+output "windows_vm_availability" {
+  value = module.vmwindows-N01551957.windows_vm_availability
+}
+
+output "windows_vm_fqdn" {
+  value = module.vmwindows-N01551957.windows_vm_fqdn
+}
+
+output "windows_private_ip" {
+  value = module.vmwindows-N01551957.windows_private_ip
+}
+
+output "windows_public_ip" {
+  value = module.vmwindows-N01551957.windows_public_ip
+}
+
+
+
+output "N01551957-DATADISK" {
+  value = module.datadisk-N01551957.N01551957-DATADISK
+}
+output "N01551957-DATADISK-ATTATCHMENT" {
+  value = module.datadisk-N01551957.N01551957-DATADISK-ATTATCHMENT
+}

@@ -22,11 +22,11 @@ module "vmlinux-N01551957" {
   source = "./modules/vmlinux-N01551957"
 
   common_tags = {
-    Assignment = "CCGC 5502 Automation Assignment"
-    Name = "Joseph.Keaveny"
+    Assignment     = "CCGC 5502 Automation Assignment"
+    Name           = "Joseph.Keaveny"
     ExpirationDate = "2024-12-31"
-    Environment = "Learning"
-    }
+    Environment    = "Learning"
+  }
   linux_avs                     = "linux_avs"
   resource_group-linux-location = module.rgroup-N01551957.N01551957-RG.location
   resource_group-linux-name     = module.rgroup-N01551957.N01551957-RG.name
@@ -34,7 +34,7 @@ module "vmlinux-N01551957" {
     centos-vm1 = "Standard_B1ms"
     centos-vm2 = "Standard_B1ms"
     centos-vm3 = "Standard_B1ms"
-    }
+  }
   linux-network-subnet = module.network-N01551957.N01551957-SUBNET.id
   linux_name           = "n01551957-c-vm"
   Admin_username       = "j"
@@ -45,6 +45,23 @@ module "vmlinux-N01551957" {
 
 module "vmwindows-N01551957" {
   source = "./modules/vmwindows-N01551957"
+
+  common_tags = {
+    Assignment     = "CCGC 5502 Automation Assignment"
+    Name           = "Joseph.Keaveny"
+    ExpirationDate = "2024-12-31"
+    Environment    = "Learning"
+  }
+  vm_instances = {
+    n01551957-w-vm1 = "Standard_B1ms"
+  }
+  windows_name                    = "windows-n01551957"
+  windows_avs                     = "windows_avs"
+  Admin_username_win              = "j"
+  Public_key_win                  = "/home/j/.ssh/id_rsa.pub"
+  resource-group-windows-location = module.rgroup-N01551957.N01551957-RG.location
+  resource-group-windows-name     = module.rgroup-N01551957.N01551957-RG.name
+  windows-network-subnet          = module.network-N01551957.N01551957-SUBNET.id
 }
 
 module "common-N01551957" {
@@ -72,8 +89,42 @@ module "database-N01551957" {
 
 module "datadisk-N01551957" {
   source = "./modules/datadisk-N01551957"
+
+  common_tags = {
+    Assignment     = "CCGC 5502 Automation Assignment"
+    Name           = "Joseph.Keaveny"
+    ExpirationDate = "2024-12-31"
+    Environment    = "Learning"
+  }
+  vm-count = {
+    "centos-vm1"  = module.vmlinux-N01551957.CentOS_vm_id[0]
+    "centos-vm2"  = module.vmlinux-N01551957.CentOS_vm_id[1]
+    "centos-vm3"  = module.vmlinux-N01551957.CentOS_vm_id[2]
+    "windows-vm1" = module.vmwindows-N01551957.windows_vm_id[0]
+  }
+  resource-group-datadisk-location = module.rgroup-N01551957.N01551957-RG.location
+  resource-group-datadisk-name     = module.rgroup-N01551957.N01551957-RG.name
+  depend_on_vmwindows_1957         = module.vmwindows-N01551957.windows_vm_hostnames
+  depend_on_vmlinux_1957           = module.vmlinux-N01551957.CentOS_vm_hostnames
+  SAT                              = "Standard_LRS"
+  DS_gb                            = "10"
 }
 
 module "loadbalancer-N01551957" {
   source = "./modules/loadbalancer-N01551957"
+
+  common_tags = {
+    Assignment     = "CCGC 5502 Automation Assignment"
+    Name           = "Joseph.Keaveny"
+    ExpirationDate = "2024-12-31"
+    Environment    = "Learning"
+  }
+  vm-count = {
+    "centos-vm1" = module.vmlinux-N01551957.CentOS_vm_id[0]
+    "centos-vm2" = module.vmlinux-N01551957.CentOS_vm_id[1]
+  "centos-vm3" = module.vmlinux-N01551957.CentOS_vm_id[2] }
+  lb_name                 = "assignment1_LB_1957"
+  resource_group_location = module.rgroup-N01551957.N01551957-RG.location
+  resource_group_name     = module.rgroup-N01551957.N01551957-RG.name
+  nic_ids                 = module.vmlinux-N01551957.CentOS_nic
 }

@@ -21,3 +21,7 @@ output "CentOS_private_ip" {
 output "CentOS_nic" {
   value = values(azurerm_network_interface.linux-nic-CentOS)[*].name
 }
+
+output "CentOS_vm_id" {
+  value = values(azurerm_linux_virtual_machine.vmlinux-CentOS)[*].id
+}
