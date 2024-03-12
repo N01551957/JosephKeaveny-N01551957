@@ -1,5 +1,5 @@
 resource "null_resource" "linux_provisioner" {
-  for_each = var.vm-count
+  for_each   = var.vm-count
   depends_on = [azurerm_linux_virtual_machine.vmlinux-CentOS]
 
   provisioner "remote-exec" {

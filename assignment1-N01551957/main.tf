@@ -85,6 +85,14 @@ module "common-N01551957" {
 
 module "database-N01551957" {
   source = "./modules/database-N01551957"
+
+  db_name                 = "assignment1db"
+  resource_group_location = module.rgroup-N01551957.N01551957-RG.location
+  resource_group_name     = module.rgroup-N01551957.N01551957-RG.name
+  admin_login             = "psqladmin"
+  admin_passwd            = "H@Sh1CoR3!"
+
+
 }
 
 module "datadisk-N01551957" {
@@ -122,9 +130,17 @@ module "loadbalancer-N01551957" {
   vm-count = {
     "centos-vm1" = module.vmlinux-N01551957.CentOS_vm_id[0]
     "centos-vm2" = module.vmlinux-N01551957.CentOS_vm_id[1]
-  "centos-vm3" = module.vmlinux-N01551957.CentOS_vm_id[2] }
+    "centos-vm3" = module.vmlinux-N01551957.CentOS_vm_id[2]
+  }
   lb_name                 = "assignment1_LB_1957"
+  LB_Sku                  = "Standard"
+  depend_on_linux_avs     = module.vmlinux-N01551957.CentOS_vm_linux_availability
   resource_group_location = module.rgroup-N01551957.N01551957-RG.location
   resource_group_name     = module.rgroup-N01551957.N01551957-RG.name
-  nic_ids                 = module.vmlinux-N01551957.CentOS_nic
+  nic_ids = {
+    "centos-vm1" = module.vmlinux-N01551957.Centos_nic_id[0]
+    "centos-vm2" = module.vmlinux-N01551957.Centos_nic_id[1]
+    "centos-vm3" = module.vmlinux-N01551957.Centos_nic_id[2]
+  }
+  depend_on_vmlinux_1957 = module.vmlinux-N01551957.CentOS_vm_hostnames
 }

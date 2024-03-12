@@ -25,3 +25,6 @@ output "CentOS_nic" {
 output "CentOS_vm_id" {
   value = values(azurerm_linux_virtual_machine.vmlinux-CentOS)[*].id
 }
+output "Centos_nic_id" {
+  value = values(azurerm_network_interface.linux-nic-CentOS)[*].id
+}

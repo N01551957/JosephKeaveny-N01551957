@@ -7,8 +7,8 @@ resource "azurerm_managed_disk" "datadisk_1957" {
   create_option        = var.CO
   disk_size_gb         = var.DS_gb
   depends_on = [
-     var.depend_on_vmwindows_1957,
-     var.depend_on_vmlinux_1957,
+    var.depend_on_vmwindows_1957,
+    var.depend_on_vmlinux_1957,
   ]
   tags = var.common_tags
 }
@@ -20,6 +20,6 @@ resource "azurerm_virtual_machine_data_disk_attachment" "datadisk_attatchment_19
   lun                = var.lun
   caching            = var.caching
   depends_on = [
-     azurerm_managed_disk.datadisk_1957
+    azurerm_managed_disk.datadisk_1957
   ]
 }

@@ -29,7 +29,8 @@ resource "azurerm_public_ip" "pub-ip-CentOS" {
   name                = "CentOS-vm-${each.key}"
   location            = var.resource_group-linux-location
   resource_group_name = var.resource_group-linux-name
-  allocation_method   = "Dynamic"
+  sku                 = "Standard"
+  allocation_method   = "Static"
   domain_name_label   = "${var.linux_name}-${each.key}"
   tags                = var.common_tags
 }
@@ -48,7 +49,7 @@ resource "azurerm_linux_virtual_machine" "vmlinux-CentOS" {
   network_interface_ids = [
     azurerm_network_interface.linux-nic-CentOS[each.key].id
   ]
-  
+
   admin_ssh_key {
     username   = var.Admin_username
     public_key = file(var.Public_key)
@@ -95,4 +96,4 @@ resource "azurerm_virtual_machine_extension" "AzureMonitor" {
     null_resource.linux_provisioner,
   ]
   tags = var.common_tags
-} 
+}

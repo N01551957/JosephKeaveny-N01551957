@@ -14,7 +14,7 @@ resource "azurerm_network_interface" "windows-nic_1957" {
   name                = var.windows_name
   location            = var.resource-group-windows-location
   resource_group_name = var.resource-group-windows-name
-  tags = var.common_tags
+  tags                = var.common_tags
   ip_configuration {
     name      = "${each.key}-ipconfig"
     subnet_id = var.windows-network-subnet
@@ -25,13 +25,13 @@ resource "azurerm_network_interface" "windows-nic_1957" {
 }
 
 resource "azurerm_public_ip" "win-pub-ip_1957" {
-  for_each              = var.vm_instances
-  name                  = var.windows_name
+  for_each            = var.vm_instances
+  name                = var.windows_name
   resource_group_name = var.resource-group-windows-name
   location            = var.resource-group-windows-location
   allocation_method   = "Dynamic"
   domain_name_label   = "${each.key}-domain-name-label"
-  tags = var.common_tags
+  tags                = var.common_tags
 }
 
 resource "azurerm_windows_virtual_machine" "vmwindows_1957" {
@@ -43,7 +43,7 @@ resource "azurerm_windows_virtual_machine" "vmwindows_1957" {
   size                = each.value
   admin_username      = "adminuser"
   admin_password      = "P@$$w0rd1234!"
-  tags = var.common_tags
+  tags                = var.common_tags
   winrm_listener {
     protocol = "Http"
   }
@@ -68,14 +68,14 @@ resource "azurerm_windows_virtual_machine" "vmwindows_1957" {
 }
 
 resource "azurerm_virtual_machine_extension" "antimalware_extension_1957" {
-  for_each              = var.vm_instances
-  name                  = "AntimalwareExtension-${each.key}"
-  virtual_machine_id    = azurerm_windows_virtual_machine.vmwindows_1957[each.key].id
-  publisher             = "Microsoft.Azure.Security"
-  type                  = "IaaSAntimalware"
-  type_handler_version  = "1.3"
+  for_each             = var.vm_instances
+  name                 = "AntimalwareExtension-${each.key}"
+  virtual_machine_id   = azurerm_windows_virtual_machine.vmwindows_1957[each.key].id
+  publisher            = "Microsoft.Azure.Security"
+  type                 = "IaaSAntimalware"
+  type_handler_version = "1.3"
   depends_on = [
-     azurerm_windows_virtual_machine.vmwindows_1957    
+    azurerm_windows_virtual_machine.vmwindows_1957
   ]
   tags = var.common_tags
 

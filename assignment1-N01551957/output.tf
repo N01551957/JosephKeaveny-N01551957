@@ -74,3 +74,12 @@ output "N01551957-DATADISK" {
 output "N01551957-DATADISK-ATTATCHMENT" {
   value = module.datadisk-N01551957.N01551957-DATADISK-ATTATCHMENT
 }
+
+output "LOADBALANCER" {
+  value = module.loadbalancer-N01551957.LOADBALANCER.name
+}
+
+
+output "POSTGRESsql_DB_name" {
+  value = module.database-N01551957.POSTGRESsql_DB
+}
