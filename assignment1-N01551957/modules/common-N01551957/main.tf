@@ -22,7 +22,5 @@ resource "azurerm_storage_account" "SA-N01551957" {
   account_tier             = var.SA_account_tier
   account_replication_type = var.SA_account_replication_type
 
-  tags = {
-    environment = "staging"
-  }
+  tags = var.common_tags
 }

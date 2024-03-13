@@ -3,7 +3,7 @@ resource "azurerm_virtual_network" "N01551957-VNET" {
   location            = var.location
   resource_group_name = var.networking-rg
   address_space       = var.vnet_space
-
+  tags                = var.common_tags
 }
 
 resource "azurerm_subnet" "N01551957-SUBNET" {
@@ -66,9 +66,7 @@ resource "azurerm_network_security_group" "N01551957-SECURITY-GROUP" {
     destination_address_prefix = "*"
   }
 
-  tags = {
-    environment = "Production"
-  }
+  tags = var.common_tags
 }
 
 resource "azurerm_subnet_network_security_group_association" "N01551957-NSGA" {

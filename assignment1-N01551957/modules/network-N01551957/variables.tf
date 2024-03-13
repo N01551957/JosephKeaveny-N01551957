@@ -1,3 +1,4 @@
+variable "common_tags" {}
 variable "vname" {}
 variable "location" {}
 variable "networking-rg" {}

@@ -6,7 +6,13 @@ module "rgroup-N01551957" {
 
 module "network-N01551957" {
   source = "./modules/network-N01551957"
-
+  
+  common_tags = {
+    Assignment     = "CCGC 5502 Automation Assignment"
+    Name           = "Joseph.Keaveny"
+    ExpirationDate = "2024-12-31"
+    Environment    = "Learning"
+  }
   vname                           = "vnet-assignment1-N01551957"
   networking-rg                   = module.rgroup-N01551957.N01551957-RG.name
   location                        = module.rgroup-N01551957.N01551957-RG.location
@@ -68,7 +74,14 @@ module "vmwindows-N01551957" {
 
 module "common-N01551957" {
   source = "./modules/common-N01551957"
-
+  
+  common_tags = {
+    Assignment     = "CCGC 5502 Automation Assignment"
+    Name           = "Joseph.Keaveny"
+    ExpirationDate = "2024-12-31"
+    Environment    = "Learning"
+  }
+  
   LAW_name                    = "acctest"
   LAW_location                = module.rgroup-N01551957.N01551957-RG.location
   LAW_rg_name                 = module.rgroup-N01551957.N01551957-RG.name

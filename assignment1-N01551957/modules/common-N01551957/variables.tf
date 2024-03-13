@@ -1,3 +1,5 @@
+variable "common_tags" {}
+
 variable "LAW_name" {}
 variable "LAW_location" {}
 variable "LAW_rg_name" {}
