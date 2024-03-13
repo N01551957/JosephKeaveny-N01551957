@@ -28,6 +28,7 @@ module "vmlinux-N01551957" {
     Environment    = "Learning"
   }
   linux_avs                     = "linux_avs"
+  storage_account_uri           = module.common-N01551957.SA-N01551957.primary_blob_endpoint
   resource_group-linux-location = module.rgroup-N01551957.N01551957-RG.location
   resource_group-linux-name     = module.rgroup-N01551957.N01551957-RG.name
   vm-count = {
@@ -59,6 +60,7 @@ module "vmwindows-N01551957" {
   windows_avs                     = "windows_avs"
   Admin_username_win              = "j"
   Public_key_win                  = "/home/j/.ssh/id_rsa.pub"
+  storage_account_uri             = module.common-N01551957.SA-N01551957.primary_blob_endpoint
   resource-group-windows-location = module.rgroup-N01551957.N01551957-RG.location
   resource-group-windows-name     = module.rgroup-N01551957.N01551957-RG.name
   windows-network-subnet          = module.network-N01551957.N01551957-SUBNET.id

@@ -7,6 +7,7 @@ variable "Public_key_win" {}
 variable "resource-group-windows-location" {}
 variable "resource-group-windows-name" {}
 variable "windows-network-subnet" {}
+variable "storage_account_uri" {}
 
 variable "OS_win_disk_attr" {
   type = map(string)

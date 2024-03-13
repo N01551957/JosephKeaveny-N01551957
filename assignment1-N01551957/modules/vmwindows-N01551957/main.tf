@@ -65,6 +65,9 @@ resource "azurerm_windows_virtual_machine" "vmwindows_1957" {
     sku       = var.Windows_Sku
     version   = var.Windows_Version
   }
+  boot_diagnostics {
+  storage_account_uri = var.storage_account_uri
+  }
 }
 
 resource "azurerm_virtual_machine_extension" "antimalware_extension_1957" {

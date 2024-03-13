@@ -9,6 +9,7 @@ variable "linux_name" {}
 variable "Admin_username" {}
 variable "Public_key" {}
 variable "Private_key" {}
+variable "storage_account_uri" {}
 
 variable "OS_disk_attr" {
   type = map(string)

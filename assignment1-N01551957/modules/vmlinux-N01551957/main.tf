@@ -68,6 +68,9 @@ resource "azurerm_linux_virtual_machine" "vmlinux-CentOS" {
     sku       = var.Linux_Sku
     version   = var.Linux_Version
   }
+  boot_diagnostics {
+  storage_account_uri = var.storage_account_uri
+  }
 }
 
 resource "azurerm_virtual_machine_extension" "NetworkWatcher" {

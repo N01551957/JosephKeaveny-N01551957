@@ -9,3 +9,4 @@ output "RSV-N01551957" {
 output "SA-N01551957" {
   value = azurerm_storage_account.SA-N01551957
 }
+
